@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-23 11:08:17.616300",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_yolz",
+  "naming_series",
+  "full_name",
+  "email",
+  "role",
+  "experience_level",
+  "assigned_project",
+  "current_status",
+  "skill_ratings",
+  "joined_date",
+  "amended_from",
+  "is_mentor",
+  "is_manager",
+  "mentor_details_section",
+  "expertise_areas",
+  "max_shadow_capacity",
+  "active_mentor_count",
+  "active_mentees",
+  "manager_details_section",
+  "managing_projects"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_yolz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "role",
+   "fieldtype": "Select",
+   "label": "Role",
+   "options": "Developer\nTester\nAnalyst"
+  },
+  {
+   "fieldname": "experience_level",
+   "fieldtype": "Select",
+   "label": "Experience Level",
+   "options": "0-6 months\n6-12 months\n1-2 years\n2-4 years\n4+ years"
+  },
+  {
+   "fieldname": "assigned_project",
+   "fieldtype": "Link",
+   "label": "Assigned Project",
+   "options": "Project"
+  },
+  {
+   "default": "Shadow",
+   "fieldname": "current_status",
+   "fieldtype": "Select",
+   "label": "Current Status",
+   "options": "Shadow\nActive"
+  },
+  {
+   "fieldname": "skill_ratings",
+   "fieldtype": "Small Text",
+   "label": "Skill Ratings"
+  },
+  {
+   "fieldname": "joined_date",
+   "fieldtype": "Data",
+   "label": "Joined Date"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Employee ID",
+   "options": "EMP-.YYYY.-.#####"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.current_status==\"Active\" && [\"1-2 years\", \n\"2-4 years\", \"4+ years\"].includes(doc.experience_level)",
+   "fieldname": "is_mentor",
+   "fieldtype": "Check",
+   "label": "Is Mentor"
+  },
+  {
+   "fieldname": "expertise_areas",
+   "fieldtype": "Small Text",
+   "label": "Expertise Areas"
+  },
+  {
+   "fieldname": "max_shadow_capacity",
+   "fieldtype": "Int",
+   "label": "Max Shadow capacity"
+  },
+  {
+   "fieldname": "active_mentor_count",
+   "fieldtype": "Int",
+   "label": "Active Mentor Count"
+  },
+  {
+   "depends_on": "eval:doc.is_mentor==1 && doc.current_status==\"Active\" && [\"1-2 years\", \n\"2-4 years\", \"4+ years\"].includes(doc.experience_level)",
+   "fieldname": "mentor_details_section",
+   "fieldtype": "Section Break",
+   "label": "Mentor Details"
+  },
+  {
+   "fieldname": "active_mentees",
+   "fieldtype": "Table",
+   "label": "Active Mentees",
+   "options": "Active Mentees"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.current_status==\"Active\" && [\"2-4 years\", \n\"4+ years\"].includes(doc.experience_level)",
+   "fieldname": "is_manager",
+   "fieldtype": "Check",
+   "label": "Is Manager"
+  },
+  {
+   "depends_on": "eval:doc.is_manager==1",
+   "fieldname": "manager_details_section",
+   "fieldtype": "Section Break",
+   "label": "Manager Details"
+  },
+  {
+   "fieldname": "managing_projects",
+   "fieldtype": "Table",
+   "label": "Managing Projects",
+   "options": "Project Team Member"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-03-23 13:00:01.137719",
+ "modified_by": "Administrator",
+ "module": "Resource Management",
+ "name": "Employee",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
