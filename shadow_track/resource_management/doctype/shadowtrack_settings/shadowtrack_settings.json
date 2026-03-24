@@ -1,0 +1,69 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-23 16:55:24.001512",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "maximum_shadow_duration",
+  "minimum_passing_score",
+  "reminder_interval",
+  "enable_auto_expiry",
+  "enable_notifications"
+ ],
+ "fields": [
+  {
+   "fieldname": "maximum_shadow_duration",
+   "fieldtype": "Int",
+   "label": "Maximum Shadow Duration"
+  },
+  {
+   "fieldname": "minimum_passing_score",
+   "fieldtype": "Float",
+   "label": "Minimum Passing Score"
+  },
+  {
+   "fieldname": "reminder_interval",
+   "fieldtype": "Int",
+   "label": "Reminder Interval"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_auto_expiry",
+   "fieldtype": "Check",
+   "label": "Enable Auto Expiry"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_notifications",
+   "fieldtype": "Check",
+   "label": " Enable Notifications"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-23 17:03:08.382735",
+ "modified_by": "Administrator",
+ "module": "Resource Management",
+ "name": "ShadowTrack Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
