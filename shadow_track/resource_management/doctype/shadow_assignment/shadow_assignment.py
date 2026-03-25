@@ -1,9 +1,11 @@
 # Copyright (c) 2026, Tarchana and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
 
 
 class ShadowAssignment(Document):
-	pass
+	def validate(self):
+		if self.end_date < self.start_date:
+			frappe.throw("End date cannot be before start date")

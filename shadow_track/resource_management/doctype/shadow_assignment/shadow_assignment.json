@@ -87,11 +87,12 @@
    "label": "STATUS"
   },
   {
+   "allow_on_submit": 1,
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Draft\nPending Approval\nIn Training\nEvaluation Pending\nCompleted\nExtended"
+   "options": "Draft\nPending Approval\nIn Training\nEvaluation Pending\nCompleted\nExtended\nRejected"
   },
   {
    "fieldname": "tracking_section",
@@ -99,34 +100,43 @@
    "label": "TRACKING"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "learning_log",
    "fieldtype": "Table",
    "label": "Learning Log",
-   "options": "Learning Log"
+   "options": "Learning Log",
+   "permlevel": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "evaluation_log",
    "fieldtype": "Table",
    "label": "Evaluation Log",
-   "options": "Evaluation Log"
+   "options": "Evaluation Log",
+   "permlevel": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "evaluation_score",
    "fieldtype": "Float",
-   "label": "Evaluation Score"
+   "label": "Evaluation Score",
+   "permlevel": 1
   },
   {
+   "allow_on_submit": 1,
+   "default": "Not Ready",
    "fieldname": "final_decision",
    "fieldtype": "Select",
    "label": "Final Decision",
-   "options": "Ready\nNot Ready"
+   "options": "Ready\nNot Ready",
+   "permlevel": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-23 15:22:04.317864",
+ "modified": "2026-03-24 18:04:17.020727",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Shadow Assignment",

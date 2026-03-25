@@ -11,26 +11,27 @@
   "full_name",
   "email",
   "role",
-  "experience_level",
   "assigned_project",
   "current_status",
   "skill_ratings",
   "joined_date",
-  "amended_from",
   "is_mentor",
   "is_manager",
+  "amended_from",
+  "experirence_section",
+  "experience_in_months",
+  "experience_in_years",
   "mentor_details_section",
   "expertise_areas",
   "max_shadow_capacity",
   "active_mentor_count",
-  "active_mentees",
-  "manager_details_section",
-  "managing_projects"
+  "active_mentees"
  ],
  "fields": [
   {
    "fieldname": "section_break_yolz",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Basic Details"
   },
   {
    "fieldname": "amended_from",
@@ -57,15 +58,9 @@
   },
   {
    "fieldname": "role",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Role",
-   "options": "Developer\nTester\nAnalyst"
-  },
-  {
-   "fieldname": "experience_level",
-   "fieldtype": "Select",
-   "label": "Experience Level",
-   "options": "0-6 months\n6-12 months\n1-2 years\n2-4 years\n4+ years"
+   "options": "Role"
   },
   {
    "fieldname": "assigned_project",
@@ -87,7 +82,7 @@
   },
   {
    "fieldname": "joined_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Joined Date"
   },
   {
@@ -98,7 +93,7 @@
   },
   {
    "default": "0",
-   "depends_on": "eval:doc.current_status==\"Active\" && [\"1-2 years\", \n\"2-4 years\", \"4+ years\"].includes(doc.experience_level)",
+   "depends_on": "eval:doc.current_status==\"Active\" \n",
    "fieldname": "is_mentor",
    "fieldtype": "Check",
    "label": "Is Mentor"
@@ -119,7 +114,7 @@
    "label": "Active Mentor Count"
   },
   {
-   "depends_on": "eval:doc.is_mentor==1 && doc.current_status==\"Active\" && [\"1-2 years\", \n\"2-4 years\", \"4+ years\"].includes(doc.experience_level)",
+   "depends_on": "eval:doc.is_mentor==1 && doc.current_status==\"Active\"",
    "fieldname": "mentor_details_section",
    "fieldtype": "Section Break",
    "label": "Mentor Details"
@@ -131,30 +126,33 @@
    "options": "Active Mentees"
   },
   {
+   "fieldname": "experirence_section",
+   "fieldtype": "Section Break",
+   "label": "Experirence"
+  },
+  {
+   "fieldname": "experience_in_months",
+   "fieldtype": "Float",
+   "label": "Experience in Months"
+  },
+  {
+   "fieldname": "experience_in_years",
+   "fieldtype": "Float",
+   "label": "Experience in Years"
+  },
+  {
    "default": "0",
-   "depends_on": "eval:doc.current_status==\"Active\" && [\"2-4 years\", \n\"4+ years\"].includes(doc.experience_level)",
+   "depends_on": "eval:doc.current_status==\"Active\" \n",
    "fieldname": "is_manager",
    "fieldtype": "Check",
    "label": "Is Manager"
-  },
-  {
-   "depends_on": "eval:doc.is_manager==1",
-   "fieldname": "manager_details_section",
-   "fieldtype": "Section Break",
-   "label": "Manager Details"
-  },
-  {
-   "fieldname": "managing_projects",
-   "fieldtype": "Table",
-   "label": "Managing Projects",
-   "options": "Project Team Member"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-23 13:00:01.137719",
+ "modified": "2026-03-24 13:34:39.121173",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Employee",
@@ -177,6 +175,7 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "role",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
