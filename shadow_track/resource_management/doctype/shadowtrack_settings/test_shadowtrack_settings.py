@@ -1,0 +1,9 @@
+# Copyright (c) 2026, Tarchana and Contributors
+# See license.txt
+
+# import frappe
+from frappe.tests.utils import FrappeTestCase
+
+
+class TestShadowTrackSettings(FrappeTestCase):
+	pass

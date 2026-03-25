@@ -1,0 +1,164 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-23 14:03:30.525030",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_knxz",
+  "amended_from",
+  "employee",
+  "mentor",
+  "manager",
+  "project",
+  "timeline_section",
+  "start_date",
+  "end_date",
+  "status_section",
+  "status",
+  "tracking_section",
+  "learning_log",
+  "evaluation_log",
+  "evaluation_score",
+  "final_decision"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_knxz",
+   "fieldtype": "Section Break",
+   "label": "BASIC INFO"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Shadow Assignment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "mentor",
+   "fieldtype": "Link",
+   "label": "Mentor",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "manager",
+   "fieldtype": "Link",
+   "label": "Manager",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "timeline_section",
+   "fieldtype": "Section Break",
+   "label": "TIMELINE"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "STATUS"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nPending Approval\nIn Training\nEvaluation Pending\nCompleted\nExtended\nRejected"
+  },
+  {
+   "fieldname": "tracking_section",
+   "fieldtype": "Section Break",
+   "label": "TRACKING"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "learning_log",
+   "fieldtype": "Table",
+   "label": "Learning Log",
+   "options": "Learning Log",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "evaluation_log",
+   "fieldtype": "Table",
+   "label": "Evaluation Log",
+   "options": "Evaluation Log",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "evaluation_score",
+   "fieldtype": "Float",
+   "label": "Evaluation Score",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Not Ready",
+   "fieldname": "final_decision",
+   "fieldtype": "Select",
+   "label": "Final Decision",
+   "options": "Ready\nNot Ready",
+   "permlevel": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-03-24 18:04:17.020727",
+ "modified_by": "Administrator",
+ "module": "Resource Management",
+ "name": "Shadow Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -247,3 +247,13 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+	{"doctype": "Workflow", "filters": {"name": "Shadow Assignment Workflow"}},
+	{"doctype": "Workflow State"},
+	{"doctype": "Workflow Action Master"},
+	{"doctype": "Role", "filters": [["name", "in", ["HR", "Manager", "Mentor", "Shadow Employee"]]]},
+	{
+		"doctype": "Custom DocPerm",
+		"filters": [["parent", "in", ["Shadow Assignment", "Employee", "Project"]]],
+	},
+]

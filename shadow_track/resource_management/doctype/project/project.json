@@ -1,0 +1,156 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-23 11:53:59.296216",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_nlva",
+  "naming_series",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_project",
+  "project_name",
+  "project_description",
+  "required_skills",
+  "manager",
+  "team_members",
+  "start_date",
+  "timeline_section",
+  "status",
+  "end_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_nlva",
+   "fieldtype": "Section Break",
+   "label": "BASIC INFO"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Project"
+  },
+  {
+   "fieldname": "parent_project",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "required_skills",
+   "fieldtype": "Small Text",
+   "label": "Required Skills"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nPlanned\nActive\nCompleted\nOn Hold"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Project ID",
+   "options": "PRJ-.YYYY.-.#####"
+  },
+  {
+   "depends_on": "eval:doc.is_group==0",
+   "fieldname": "team_members",
+   "fieldtype": "Table",
+   "label": "Team Members",
+   "options": "Project Team Member"
+  },
+  {
+   "fieldname": "manager",
+   "fieldtype": "Link",
+   "label": "Manager",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "timeline_section",
+   "fieldtype": "Section Break",
+   "label": "TIMELINE"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "project_description",
+   "fieldtype": "Text Editor",
+   "label": "Project Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2026-03-24 13:17:11.661894",
+ "modified_by": "Administrator",
+ "module": "Resource Management",
+ "name": "Project",
+ "naming_rule": "By \"Naming Series\" field",
+ "nsm_parent_field": "parent_project",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
