@@ -28,5 +28,3 @@ class Employee(Document):
 		)
 
 		user.insert(ignore_permissions=True)
-
-		self.db_set("user", self.email)

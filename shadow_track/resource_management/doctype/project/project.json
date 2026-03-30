@@ -18,9 +18,9 @@
   "required_skills",
   "manager",
   "team_members",
-  "start_date",
-  "timeline_section",
   "status",
+  "timeline_section",
+  "start_date",
   "end_date"
  ],
  "fields": [
@@ -94,17 +94,19 @@
    "fieldname": "team_members",
    "fieldtype": "Table",
    "label": "Team Members",
-   "options": "Project Team Member"
+   "options": "Project Team Member",
+   "reqd": 1
   },
   {
    "fieldname": "manager",
    "fieldtype": "Link",
    "label": "Manager",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "start_date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "Start Date"
   },
   {
@@ -114,7 +116,7 @@
   },
   {
    "fieldname": "end_date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "End Date"
   },
   {
@@ -127,7 +129,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-03-24 13:17:11.661894",
+ "modified": "2026-03-30 15:02:37.522583",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Project",

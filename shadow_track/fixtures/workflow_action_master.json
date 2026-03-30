@@ -23,6 +23,13 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2026-03-25 17:25:57.527454",
+  "name": "Submit for Evaluation",
+  "workflow_action_name": "Submit for Evaluation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2026-03-24 15:08:35.109371",
   "name": "Send for Approval",
   "workflow_action_name": "Send for Approval"
