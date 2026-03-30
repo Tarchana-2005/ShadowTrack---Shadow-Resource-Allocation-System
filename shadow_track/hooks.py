@@ -257,3 +257,8 @@ fixtures = [
 		"filters": [["parent", "in", ["Shadow Assignment", "Employee", "Project"]]],
 	},
 ]
+
+permission_query_conditions = {
+	"Shadow Assignment": "shadow_track.permission.shadow_assignment_permission",
+	"Employee": "shadow_track.permission.employee_permission",
+}

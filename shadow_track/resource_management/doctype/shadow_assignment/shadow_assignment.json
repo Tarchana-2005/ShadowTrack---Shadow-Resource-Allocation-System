@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "SA.#####",
  "creation": "2026-03-23 14:03:30.525030",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -8,9 +9,9 @@
   "section_break_knxz",
   "amended_from",
   "employee",
+  "project",
   "mentor",
   "manager",
-  "project",
   "timeline_section",
   "start_date",
   "end_date",
@@ -92,7 +93,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Draft\nPending Approval\nIn Training\nEvaluation Pending\nCompleted\nExtended\nRejected"
+   "options": "Draft\nPending Approval\nIn Training\nEvaluation Submitted\nCompleted\nExtended\nRejected"
   },
   {
    "fieldname": "tracking_section",
@@ -124,22 +125,21 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "Not Ready",
    "fieldname": "final_decision",
    "fieldtype": "Select",
    "label": "Final Decision",
-   "options": "Ready\nNot Ready",
-   "permlevel": 1
+   "options": "\nReady\nNot Ready"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-24 18:04:17.020727",
+ "modified": "2026-03-30 14:46:47.915403",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Shadow Assignment",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

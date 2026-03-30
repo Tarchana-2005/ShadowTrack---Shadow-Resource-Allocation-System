@@ -30,19 +30,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-03-24 15:02:29.442508",
-  "name": "Draft",
+  "modified": "2026-03-26 13:16:20.523653",
+  "name": "Evaluation Submitted",
   "style": "",
-  "workflow_state_name": "Draft"
+  "workflow_state_name": "Evaluation Submitted"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-03-24 15:03:12.744813",
-  "name": "In Training",
+  "modified": "2026-03-24 15:02:29.442508",
+  "name": "Draft",
   "style": "",
-  "workflow_state_name": "In Training"
+  "workflow_state_name": "Draft"
  },
  {
   "docstatus": 0,
@@ -79,5 +79,14 @@
   "name": "Extended",
   "style": "",
   "workflow_state_name": "Extended"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-03-24 15:03:12.744813",
+  "name": "In Training",
+  "style": "",
+  "workflow_state_name": "In Training"
  }
 ]
