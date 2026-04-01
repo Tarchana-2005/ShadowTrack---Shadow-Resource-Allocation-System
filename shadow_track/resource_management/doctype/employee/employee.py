@@ -10,7 +10,7 @@ class Employee(Document):
 		self.create_login_user()
 
 	def create_login_user(self):
-		if self.role not in ["HR", "Manager", "Mentor", "Shadow Employee"]:
+		if self.role not in ["HR", "Manager", "Mentor", "Shadow Employee", "General Employee"]:
 			return
 
 		if frappe.db.exists("User", self.email):

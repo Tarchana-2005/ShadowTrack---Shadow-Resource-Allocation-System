@@ -10,6 +10,7 @@
   "naming_series",
   "full_name",
   "email",
+  "job_role",
   "role",
   "assigned_project",
   "current_status",
@@ -60,7 +61,7 @@
   {
    "fieldname": "role",
    "fieldtype": "Link",
-   "label": "Role",
+   "label": "Functional Role",
    "options": "Role"
   },
   {
@@ -149,13 +150,19 @@
    "fieldname": "is_manager",
    "fieldtype": "Check",
    "label": "Is Manager"
+  },
+  {
+   "fieldname": "job_role",
+   "fieldtype": "Select",
+   "label": "Job Role",
+   "options": "Developer\nAnalyst\nTester"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-30 14:47:53.199673",
+ "modified": "2026-03-30 17:37:44.936630",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Employee",

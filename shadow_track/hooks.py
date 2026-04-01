@@ -262,3 +262,7 @@ permission_query_conditions = {
 	"Shadow Assignment": "shadow_track.permission.shadow_assignment_permission",
 	"Employee": "shadow_track.permission.employee_permission",
 }
+
+scheduler_events = {
+	"daily": ["shadow_track.api.send_training_reminder", "shadow_track.api.update_evaluation_pending_status"]
+}
