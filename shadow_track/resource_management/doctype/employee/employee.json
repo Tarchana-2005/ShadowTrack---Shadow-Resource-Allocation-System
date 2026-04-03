@@ -26,7 +26,8 @@
   "expertise_areas",
   "max_shadow_capacity",
   "active_mentor_count",
-  "active_mentees"
+  "active_mentees",
+  "date_of_joining"
  ],
  "fields": [
   {
@@ -156,13 +157,19 @@
    "fieldtype": "Select",
    "label": "Job Role",
    "options": "Developer\nAnalyst\nTester"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-30 17:37:44.936630",
+ "modified": "2026-04-03 12:58:28.846104",
  "modified_by": "Administrator",
  "module": "Resource Management",
  "name": "Employee",

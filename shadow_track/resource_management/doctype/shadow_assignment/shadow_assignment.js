@@ -55,3 +55,11 @@ function set_date(frm) {
 		frm.set_value("end_date", frappe.datetime.add_days(frm.doc.start_date, d));
 	});
 }
+
+frappe.ui.form.on("Shadow Assignment", {
+	refresh: function (frm) {
+		frappe.realtime.on("notification_update", function () {
+			location.reload();
+		});
+	},
+});
