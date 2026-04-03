@@ -50,28 +50,32 @@ class ShadowAssignment(Document):
 				if not self.evaluation_log:
 					frappe.throw("Evaluation must be completed before submitting")
 
-				for row in self.evaluation_log:
-					employee = frappe.db.get_value("Employee", {"email": frappe.session.user}, "name")
-					if employee != self.mentor:
-						frappe.throw("Only the assigned mentor can add or update evaluation")
+				employee = frappe.db.get_value("Employee", {"email": frappe.session.user}, "name")
+				if employee != self.mentor:
+					frappe.throw("Only the assigned mentor can add or update evaluation")
 
+				for row in self.evaluation_log:
 					if not row.mentor_recommendation:
 						frappe.throw("Mentor must provide a recommendation before saving evaluation")
 
-		if self.final_decision:
-			employee = frappe.db.get_value("Employee", {"email": frappe.session.user}, "name")
-			if employee != self.manager:
-				frappe.throw("Only manager can give final decision")
+				self.calculate_evaluation_score()
+				self.db_set("evaluation_score", self.evaluation_score)
 
-		if prev_doc:
 			if prev_doc.workflow_state == "Evaluation Submitted" and (
 				self.workflow_state == "Completed" or self.workflow_state == "Extended"
 			):
 				if not self.final_decision:
 					frappe.throw("Final decision must be given by the Manager")
 
+				employee = frappe.db.get_value("Employee", {"email": frappe.session.user}, "name")
+				if employee != self.manager:
+					frappe.throw("Only manager can give final decision")
+
+			self.training_extend(prev_doc)
+
 		self.training_completion()
-		self.training_extend()
+		if self.workflow_state == "Completed" and self.final_decision == "Ready":
+			self.notify_employee_completion()
 
 	def training_completion(self):
 		if self.workflow_state == "Completed" and self.final_decision == "Ready":
@@ -97,30 +101,45 @@ class ShadowAssignment(Document):
 			user_doc.roles = new_roles
 
 			found = False
-
 			for r in user_doc.roles:
 				if r.role == "General Employee":
 					found = True
 					break
 
-				if not found:
-					user_doc.append("roles", {"role": "General Employee"})
+			if not found:
+				user_doc.append("roles", {"role": "General Employee"})
 
 			user_doc.save(ignore_permissions=True)
 
-	def training_extend(self):
-		prev_doc = self.get_doc_before_save()
+	def notify_employee_completion(self):
+		employee_email = frappe.db.get_value("Employee", self.employee, "email")
+		employee_name = frappe.db.get_value("Employee", self.employee, "full_name")
 
+		frappe.sendmail(
+			recipients=[employee_email],
+			subject="Congratulations! Training Completed - ShadowTrack",
+			message=f"""
+            <p>Dear {employee_name},</p>
+            <p>Congratulations! </p>
+            <p>Your shadow training has been successfully completed.</p>
+            <p><b>Assignment:</b> {self.name}</p>
+            <p><b>Training Period:</b> {self.start_date} to {self.end_date}</p>
+            <p>Your role has been updated to <b>General Employee</b>.
+            Welcome to the team!</p>
+            <br>
+            <p>Regards,</p>
+            <p>ShadowTrack</p>
+        """,
+		)
+
+	def training_extend(self, prev_doc):
 		if prev_doc:
 			if prev_doc.workflow_state == "Extended" and self.workflow_state == "In Training":
 				self.start_date = self.end_date
+				self.final_decision = ""
 
-				duration = frappe.db.get_single_value("ShadowTrack Settings", "maximum_shadow_duration")
-
-				if duration:
-					self.end_date = add_days(self.start_date, duration)
-
-				self.training_remainder = 0
+				duration = frappe.db.get_single_value("ShadowTrack Settings", "maximum_shadow_duration") or 30
+				self.end_date = add_days(self.start_date, duration)
 
 	def send_assignment_email(self):
 		mentor_email = frappe.db.get_value("Employee", self.mentor, "email")
@@ -147,3 +166,20 @@ class ShadowAssignment(Document):
             ShadowTrack
             """,
 		)
+
+	def calculate_evaluation_score(self):
+		total_score = 0
+		count = 0
+
+		for row in self.evaluation_log:
+			if (
+				row.technical_skills is not None
+				and row.communication is not None
+				and row.task_handling is not None
+			):
+				row_score = (row.technical_skills + row.communication + row.task_handling) / 3
+
+				total_score += row_score
+				count += 1
+
+		self.evaluation_score = round(total_score / count, 2) if count else 0
