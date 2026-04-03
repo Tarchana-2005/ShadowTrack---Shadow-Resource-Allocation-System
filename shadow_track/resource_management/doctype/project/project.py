@@ -14,15 +14,16 @@ class Project(NestedSet):
 
 		# parent child date check
 		if self.parent_project:
-			parent = frappe.get_doc("Project", self.parent_project)
+			parent_start = frappe.get_value("Project", self.parent_project, "start_date")
+			parent_end = frappe.get_value("Project", self.parent_project, "end_date")
 
-			if parent.start_date and getdate(self.start_date) < getdate(parent.start_date):
+			if parent_start and getdate(self.start_date) < getdate(parent_start):
 				frappe.throw("Child project cannot start before parent project")
 
-			if parent.end_date and getdate(self.end_date) > getdate(parent.end_date):
+			if parent_end and getdate(self.end_date) > getdate(parent_end):
 				frappe.throw("Child project cannot end after parent project")
 
 		# parent project check
 		if not self.is_group:
 			if not self.parent_project:
-				frappe.throw("Team must have a parent project")
+				frappe.throw("Non-group project must have a parent project")

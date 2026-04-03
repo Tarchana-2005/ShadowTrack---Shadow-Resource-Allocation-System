@@ -38,4 +38,20 @@ frappe.ui.form.on("Shadow Assignment", {
 				};
 			});
 	},
+
+	// onload: function(frm) {
+	//     set_date(frm)
+	// },
+
+	// start_date: function(frm) {
+	//     set_date(frm)
+	// }
 });
+
+function set_date(frm) {
+	if (!frm.doc.start_date) return;
+
+	frappe.db.get_single_value("ShadowTrack Settings", "maximum_shadow_duration").then((d) => {
+		frm.set_value("end_date", frappe.datetime.add_days(frm.doc.start_date, d));
+	});
+}

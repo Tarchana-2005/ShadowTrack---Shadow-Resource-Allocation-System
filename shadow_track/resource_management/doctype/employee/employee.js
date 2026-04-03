@@ -6,3 +6,18 @@
 
 // 	},
 // });
+
+frappe.ui.form.on("Employee", {
+	setup: function (frm) {
+		frm.set_query("role", function () {
+			return {
+				filters: {
+					name: [
+						"in",
+						["Mentor", "Manager", "HR", "Shadow Employee", "General Employee"],
+					],
+				},
+			};
+		});
+	},
+});

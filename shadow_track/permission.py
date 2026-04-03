@@ -15,7 +15,7 @@ def shadow_assignment_permission(user):
 	if "Mentor" in roles:
 		return (
 			f"`tabShadow Assignment`.mentor = {frappe.db.escape(employee)}"
-			f" AND `tabShadow Assignment`.workflow_state = 'In Training'"
+			f" AND `tabShadow Assignment`.workflow_state IN ('In Training', 'Evaluation Pending')"
 		)
 
 	if "Shadow Employee" in roles:
