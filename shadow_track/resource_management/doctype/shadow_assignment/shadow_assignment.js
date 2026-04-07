@@ -39,6 +39,18 @@ frappe.ui.form.on("Shadow Assignment", {
 			});
 	},
 
+	// refresh: function(frm) {
+	//     set_evaluation_log_visibility(frm);
+	// },
+
+	// onload: function(frm) {
+	//     set_evaluation_log_visibility(frm);
+	// },
+
+	// end_date: function(frm) {
+	//     set_evaluation_log_visibility(frm);
+	// }
+
 	// onload: function(frm) {
 	//     set_date(frm)
 	// },
@@ -55,3 +67,19 @@ function set_date(frm) {
 		frm.set_value("end_date", frappe.datetime.add_days(frm.doc.start_date, d));
 	});
 }
+
+// function set_evaluation_log_visibility(frm) {
+//     if (!frm.doc.end_date) {
+//         frm.set_df_property("evaluation_log", "hidden", 1);
+//         return;
+//     }
+
+//     let today = frappe.datetime.get_today();
+//     let show_from = frappe.datetime.add_days(frm.doc.end_date, -1);
+
+//     if (today >= show_from) {
+//         frm.set_df_property("evaluation_log", "hidden", 0);
+//     } else {
+//         frm.set_df_property("evaluation_log", "hidden", 1);
+//     }
+// }

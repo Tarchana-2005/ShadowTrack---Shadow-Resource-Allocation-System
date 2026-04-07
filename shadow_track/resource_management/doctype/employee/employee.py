@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate, today
 
 
 class Employee(Document):
@@ -28,3 +29,22 @@ class Employee(Document):
 		)
 
 		user.insert(ignore_permissions=True)
+
+	def validate(self):
+		self.calculate_experience()
+
+	def calculate_experience(self):
+		if not self.date_of_joining:
+			self.experience_in_months = 0
+			self.experience_in_years = 0
+			return
+		joining_date = getdate(self.date_of_joining)
+		current_date = getdate(today())
+
+		months = (current_date.year - joining_date.year) * 12 + (current_date.month - joining_date.month)
+
+		if months < 0:
+			months = 0
+
+		self.experience_in_months = months
+		self.experience_in_years = round(months / 12, 1)
