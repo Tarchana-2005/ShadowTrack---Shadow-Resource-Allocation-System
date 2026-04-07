@@ -2,5 +2,12 @@
 // For license information, please see license.txt
 
 frappe.query_reports["Resource Readiness Report"] = {
-	filters: [],
+	filters: [
+		{
+			fieldname: "project",
+			label: "Project",
+			fieldtype: "Link",
+			options: "Project",
+		},
+	],
 };

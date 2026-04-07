@@ -6,6 +6,8 @@ from frappe.utils import date_diff
 
 
 def execute(filters=None):
+	if filters.get("from_date") > filters.get("to_date"):
+		frappe.throw("From date cannot be greater than To date")
 	columns = get_columns()
 	data = get_data(filters)
 	return columns, data

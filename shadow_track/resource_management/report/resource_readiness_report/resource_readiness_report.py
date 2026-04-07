@@ -4,15 +4,23 @@ import frappe
 def execute(filters=None):
 	columns = get_columns()
 
-	shadow_count = frappe.db.count("Employee", {"current_status": "Shadow"})
-	active_count = frappe.db.count("Employee", {"current_status": "Active"})
+	project = filters.get("project") if filters else None
+
+	employee_filters = {}
+	if project:
+		employee_filters["assigned_project"] = project
+
+	shadow_count = frappe.db.count("Employee", {"current_status": "Shadow", **employee_filters})
+	active_count = frappe.db.count("Employee", {"current_status": "Active", **employee_filters})
 	total = shadow_count + active_count
 
 	low = 0
 	medium = 0
 	high = 0
 
-	employees = frappe.get_all("Employee", fields=["skill_ratings", "current_status"])
+	employees = frappe.get_all(
+		"Employee", filters=employee_filters, fields=["skill_ratings", "current_status"]
+	)
 
 	for emp in employees:
 		score = emp.skill_ratings

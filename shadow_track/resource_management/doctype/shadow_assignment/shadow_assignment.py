@@ -8,6 +8,29 @@ from frappe.utils import add_days
 
 class ShadowAssignment(Document):
 	def validate(self):
+		existing = frappe.db.exists(
+			"Shadow Assignment",
+			{
+				"employee": self.employee,
+				"status": ["in", ["In Training", "Pending Approval"]],
+				"name": ["!=", self.name],
+			},
+		)
+
+		for row in self.evaluation_log:
+			fields = {
+				"Technical skills": row.technical_skills,
+				"Communication": row.communication,
+				"Task Handling": row.task_handling,
+			}
+
+			for field_name, value in fields.items():
+				if value is not None and (value < 0 or value > 10):
+					frappe.throw(f"{field_name} should be between 0 to 10")
+
+		if existing:
+			frappe.throw("Active assignment already exists")
+
 		if self.start_date and self.end_date:
 			if self.end_date < self.start_date:
 				frappe.throw("End date cannot be before start date")
@@ -112,14 +135,13 @@ class ShadowAssignment(Document):
 			user_doc.save(ignore_permissions=True)
 
 	def notify_employee_completion(self):
-		employee_email = frappe.db.get_value("Employee", self.employee, "email")
-		employee_name = frappe.db.get_value("Employee", self.employee, "full_name")
+		emp = frappe.db.get_value("Employee", self.employee, ["email", "full_name"], as_dict=True)
 
 		frappe.sendmail(
-			recipients=[employee_email],
+			recipients=[emp.email],
 			subject="Congratulations! Training Completed - ShadowTrack",
 			message=f"""
-            <p>Dear {employee_name},</p>
+            <p>Dear {emp.name},</p>
             <p>Congratulations! </p>
             <p>Your shadow training has been successfully completed.</p>
             <p><b>Assignment:</b> {self.name}</p>
@@ -135,7 +157,6 @@ class ShadowAssignment(Document):
 	def training_extend(self, prev_doc):
 		if prev_doc:
 			if prev_doc.workflow_state == "Extended" and self.workflow_state == "In Training":
-				self.start_date = self.end_date
 				self.final_decision = ""
 
 				duration = frappe.db.get_single_value("ShadowTrack Settings", "maximum_shadow_duration") or 30
